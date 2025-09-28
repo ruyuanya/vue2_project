@@ -1,51 +1,106 @@
 <template>
   <div id="app">
-    <router-link to="/home" v-if="$route.path !== '/home'">
-      <div class="ys">点我进home~</div>
-    </router-link>
-    <router-link to="/about" v-if="$route.path !== '/about'">
-      <div class="ys">点我进关于页面~</div>
-    </router-link>
-    <h1 v-if="$route.path !== '/home' && $route.path !== '/about'">
-      人生苦短，我用vue
-    </h1>
-    <router-view></router-view>
+    <div class="container">
+      <div class="sidebar">
+        <router-link to="/home">
+          <div class="ys" :class="{ active: $route.path === '/home' }">个人</div>
+        </router-link>
+        <router-link to="/about">
+          <div class="ys" :class="{ active: $route.path === '/about' }">关于</div>
+        </router-link>
+        <!-- 首页按钮，只在/about和/home页面显示，根目录的时候不显示 -->
+        <router-link to="/" v-if="showHomeButton">
+          <div class="ys">首页</div>
+        </router-link>
+      </div>
+      
+      <div class="content">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    showHomeButton() {
+      // 只在/about和/home页面显示首页按钮
+      return this.$route.path === '/about' || this.$route.path === '/home';
+    }
+  }
 }
 </script>
 
 <style>
 #app {
+  height: 800px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.container {
+  display: flex;
+  min-height: 800px;
+}
+
+.sidebar {
+  height: 790px;
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  border-right: 1px solid #e9ecef;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
 }
 
 .ys {
-  background-color: #4CAF50;
-  /* 绿色 */
-  border: none;
-  /* 字体白色 */
-  color: white;
-  padding: 15px 16px;
+  font-size: 20px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  color: #4CAF50;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 20px;
-  margin-top: 20px;
-  border-radius: 5px 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.ys:hover {
+  background-color: #e8f5e9;
+  transform: translateX(5px);
+}
+
+.ys.active {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4CAF50;
 }
 
 .content {
-  
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content > div {
+  width: 100%;
+  text-align: center;
+}
+
+.content h1, .content h2 {
+  margin: 20px 0;
+  color: #2c3e50;
 }
 </style>
