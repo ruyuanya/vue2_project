@@ -8,9 +8,9 @@
         <router-link to="/about">
           <div class="ys" :class="{ active: $route.path === '/about' }">关于</div>
         </router-link>
-        <!-- 首页按钮，只在/about和/home页面显示，根目录的时候不显示 -->
-        <router-link to="/" v-if="showHomeButton">
-          <div class="ys">首页</div>
+        <!-- 首页按钮：正常显示，不需要条件判断 -->
+        <router-link to="/">
+          <div class="ys" :class="{ active: $route.path === '/' }">首页</div>
         </router-link>
       </div>
       
@@ -23,13 +23,7 @@
 
 <script>
 export default {
-  name: 'App',
-  computed: {
-    showHomeButton() {
-      // 只在/about和/home页面显示首页按钮
-      return this.$route.path === '/about' || this.$route.path === '/home';
-    }
-  }
+  name: 'App'
 }
 </script>
 
