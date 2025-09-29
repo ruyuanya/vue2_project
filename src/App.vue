@@ -3,14 +3,14 @@
     <div class="container">
       <div class="sidebar">
         <router-link to="/home">
-          <div class="ys" :class="{ active: $route.path === '/home' }">个人</div>
+          <div class="button" :class="{ active: $route.path === '/home' }">个人</div>
         </router-link>
         <router-link to="/about">
-          <div class="ys" :class="{ active: $route.path === '/about' }">关于</div>
+          <div class="button" :class="{ active: $route.path === '/about' }">关于</div>
         </router-link>
         <!-- 首页按钮：正常显示，不需要条件判断 -->
         <router-link to="/">
-          <div class="ys" :class="{ active: $route.path === '/' }">首页</div>
+          <div class="button" :class="{ active: $route.path === '/' }">首页</div>
         </router-link>
       </div>
       
@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style>
+/* 基础样式设置 */
 #app {
   height: 800px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -37,11 +38,13 @@ export default {
   color: #2c3e50;
 }
 
+/* 布局容器 */
 .container {
   display: flex;
   min-height: 800px;
 }
 
+/* 侧边栏样式 */
 .sidebar {
   height: 790px;
   width: 250px;
@@ -50,12 +53,14 @@ export default {
   border-right: 1px solid #e9ecef;
 }
 
+/* 链接样式，并去除下划线 */
 .sidebar a {
   display: block;
   text-decoration: none;
 }
 
-.ys {
+/* 按钮样式 */
+.button {
   font-size: 20px;
   line-height: 1.8;
   letter-spacing: 0.5px;
@@ -69,16 +74,19 @@ export default {
   transition: all 0.3s ease;
 }
 
-.ys:hover {
+/* 鼠标悬停效果样式 */
+.button:hover {
   background-color: #e8f5e9;
-  transform: translateX(5px);
+  transform: translateX(5px);/* 向右平移5像素 */
 }
 
-.ys.active {
+/* 点击后的按钮激活状态 */
+.button.active {
   background-color: #e8f5e9;
   border-left: 4px solid #4CAF50;
 }
 
+/* 右侧内容区域 */
 .content {
   flex: 1;
   padding: 40px;
@@ -88,6 +96,7 @@ export default {
   justify-content: flex-start;
 }
 
+/* 内容区域子元素 */
 .content > div {
   width: 100%;
   text-align: center;

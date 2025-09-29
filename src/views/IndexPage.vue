@@ -1,7 +1,7 @@
 <template>
     <div class="home-content">
         <h1>这里是首页</h1>
-        <p>欢迎来到我的个人主页</p>
+        <p>欢迎来到首页！</p>
     </div>
 </template>
 
