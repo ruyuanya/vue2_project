@@ -1,14 +1,25 @@
 <template>
-    <div class="home-content">
-        <h1>这里是首页</h1>
-        <p>欢迎来到首页！</p>
-    </div>
+  <div class="home-content">
+    <h1>这里是首页</h1>
+    <p>欢迎来到首页！</p>
+  </div>
 </template>
 
 <script>
+// import api from '@/api/api'
+
 export default {
-    name: 'IndexPage',
-};
+  name: 'IndexPage',
+  data() {
+    return {
+      users: []
+    }
+  },
+  methods: {
+  },
+  mounted() {
+  }
+}
 </script>
 
 <style scoped>
